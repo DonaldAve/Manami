@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: my-laravel-app
+        container_name: ManamiMang
+        ports:
+            - "8080:80"
+        volumes:
+            - .:/var/www/html
+
+    db:
+        image: mysql:5.7
+        container_name: mysql_db
+        restart: always
+        environment:
+            MYSQL_DATABASE: your_database_name # Замените на имя вашей базы данных.
+            MYSQL_USER: your_username # Замените на имя пользователя.
+            MYSQL_PASSWORD: your_password # Замените на пароль.
+            MYSQL_ROOT_PASSWORD: root_password # Замените на пароль root.
+        ports:
+            - "3306:3306"
